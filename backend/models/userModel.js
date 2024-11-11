@@ -1,5 +1,5 @@
 module.exports = (sequlize, DataTypes) => {
-  const User = sequlize.define( "user", {
+  const User = sequlize.define("user", {
     userName: {
       type: DataTypes.STRING,
       unique: true,
@@ -14,6 +14,6 @@ module.exports = (sequlize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }, {timestamps: true}, )
+  }, { timestamps: true },)
   return User
 }

@@ -11,7 +11,7 @@ const saveUser = async (req, res, next) => {
         userName: req.body.userName,
       },
     });
-    if(username) {
+    if (username) {
       return res.json(409).send("username is already taken");
     }
 
@@ -21,7 +21,7 @@ const saveUser = async (req, res, next) => {
       }
     });
 
-    if(emailcheck) {
+    if (emailcheck) {
       return res.json(409).send("Email is already taken");
     }
 
