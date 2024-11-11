@@ -13,5 +13,6 @@ const db = {}
 db.sequelize = sequelize;
 
 db.users = require('./userModel')(sequelize, DataTypes)
+db.notes = require('./noteModel')(sequelize, DataTypes)
 
 module.exports = db

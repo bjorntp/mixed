@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../models");
+const jwt = require('jsonwebtoken');
 
 const User = db.users;
 
@@ -31,6 +32,21 @@ const saveUser = async (req, res, next) => {
   }
 };
 
+const authentication = async (req, res, next) => {
+  const token = req.header('Authorization')?.split(' ')[1];
+  if (!token) return res.status(401).send('No token provided, access denied.');
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_ACCESS_TOKEN);
+    req.userId = decoded.id;
+    console.log("Authenticated with userid ", decoded.id)
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(403).send('There was an error authenticating your token, perhaps it has expired.')
+  }
+}
+
 module.exports = {
   saveUser,
+  authentication
 };

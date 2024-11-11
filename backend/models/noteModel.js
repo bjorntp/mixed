@@ -1,25 +1,28 @@
 module.exports = (sequlize, DataTypes) => {
-  const User = sequlize.define("user", {
+  const Note = sequlize.define("note", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    userName: {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id'
+      }
+    },
+    title: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: false,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-    },
-    passwordHash: {
+    body: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   }, { timestamps: true },)
-  return User
+  return Note;
 }

@@ -3,6 +3,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
 const userRoutes = require('./routes/userRoutes')
+const noteRoutes = require('./routes/noteRoutes')
 
 //setting up your port
 const PORT = process.env.PORT || 8080
@@ -22,6 +23,9 @@ db.sequelize.sync({ force: true }).then(() => {
 
 //routes for the user API
 app.use('/api/users', userRoutes)
+
+//routes for the user API
+app.use('/api/notes', noteRoutes)
 
 //listening to server connection
 app.listen(PORT, () => console.log(`Server is connected on ${PORT}`))

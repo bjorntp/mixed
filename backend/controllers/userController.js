@@ -10,7 +10,7 @@ const signup = async (req, res) => {
     const data = {
       userName,
       email,
-      password: await bcrypt.hash(password, 10),
+      passwordHash: await bcrypt.hash(password, 10),
     };
 
     const user = await User.create(data);
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
 
     if (user) {
       let token = jwt.sign({ id: user.id }, process.env.SECRET_ACCESS_TOKEN, {
-        expiresIn: 1 * 24 * 60 * 60 * 1000,
+        expiresIn: 24 * 60 * 60 * 1000,
       });
 
       res.cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true });
@@ -31,6 +31,7 @@ const signup = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -54,7 +55,7 @@ const login = async (req, res) => {
     };
 
     if (user) {
-      const isSame = await bcrypt.compare(password, user.password);
+      const isSame = await bcrypt.compare(password, user.passwordHash);
       if (isSame) {
         let token = jwt.sign({ id: user.id }, process.env.SECRET_ACCESS_TOKEN, {
           expiresIn: 1 * 24 * 60 * 60 * 1000
@@ -74,6 +75,7 @@ const login = async (req, res) => {
   }
   catch (error) {
     console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -81,3 +83,5 @@ module.exports = {
   signup,
   login
 };
+
+
