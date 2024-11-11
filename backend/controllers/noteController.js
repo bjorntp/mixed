@@ -5,8 +5,8 @@ const notes = db.notes;
 
 const viewNotes = async (req, res) => {
   try {
-    const notes = await notes.findAll({ where: { userId: req.userId } });
-    res.json(notes);
+    const userNotes = await notes.findAll({ where: { userId: req.userId } });
+    res.json(userNotes);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -15,10 +15,11 @@ const viewNotes = async (req, res) => {
 
 const viewNote = async (req, res) => {
   try {
+    const { noteId } = req.body;
     const note = await notes.findOne({
       where: {
-        userId: req.userId,
-        id: req.noteId
+        id: noteId,
+        userId: req.userId
       }
     });
     if (!note) {
@@ -61,11 +62,11 @@ const newNote = async (req, res) => {
 
 const deleteNote = async (req, res) => {
   try {
-
+    const { noteId } = req.body;
     const deletedRow = await notes.destroy({
       where: {
-        id: req.params.id, // Ändrat till params pga chatgpt, kolla senare om där blir fel.
-        userId: req.userId
+        userId: req.userId,
+        id: noteId
       }
     });
     if (deletedRow === 0) {
