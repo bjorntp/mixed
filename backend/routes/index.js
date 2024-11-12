@@ -1,4 +1,5 @@
 const Router = (server) => {
+
     server.get("/v1", (req, res) => {
         try {
             res.status(200).json({
