@@ -1,37 +1,47 @@
-import React from 'react';
-import { Button, StyleSheet, TextInput } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
-import Colors from '@/constants/Colors';
+export default function ListNotesScreen() {
 
-export default function SignupScreen() {
-
-  const [email, onChangeEmail] = React.useState('bjorn@tenje.se');
-  const [user, onChangeUser] = React.useState('bjorn');
-  const [password, onChangePassword] = React.useState('pass');
+  const [notes, setNotes] = React.useState('');
 
   const apiUrl = "http://localhost:3000/api/"
 
-  const signupFunction = async () => {
-    console.log(user)
+  const NoteCard = ({ note }) => (
+    <View>
+      <Text>{note.title}</Text>
+      <Text>{note.body}</Text>
+    </View>
+  )
+
+  const retreiveNotes = async () => {
     try {
-      await fetch(apiUrl + "users/signup", {
-        method: "post",
+      const token = await AsyncStorage.getItem('jwt');
+      await fetch(apiUrl + "notes/viewAll", {
+        method: "GET",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify({
-          "email": email,
-          "userName": user,
-          "password": password
-        })
       })
+        .then(response => response.json())
+        .then(data => setNotes(data))
+        .catch(err => console.error("error: ", err));
+
+
     } catch (error) {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    retreiveNotes();
+  });
+
+  const renderItem = ({ item }) => <NoteCard note={item} />;
 
   return (
     <View>
@@ -40,35 +50,15 @@ export default function SignupScreen() {
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)">
-          Enter email, username and password:
+          List of all your notes.
         </Text>
 
-        <TextInput
-          style={styles.inputBoxes}
-          onChangeText={onChangeEmail}
-          value={email}
-        />
-
-        <TextInput
-          style={styles.inputBoxes}
-          onChangeText={onChangeUser}
-          value={user}
-        />
-
-        <TextInput
-          secureTextEntry={true}
-          style={styles.inputBoxes}
-          onChangeText={onChangePassword}
-          value={password}
-        />
-
-        <Button
-          title={"Submit"}
-          onPress={signupFunction}
+        <FlatList
+          data={notes}
+          renderItem={renderItem}
         />
 
       </View>
-
     </View>
   );
 }
