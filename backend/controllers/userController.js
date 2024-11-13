@@ -61,7 +61,10 @@ const login = async (req, res) => {
           expiresIn: 1 * 24 * 60 * 60 * 1000
         });
 
-        res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
+        res.cookie("jwt", token, {
+          maxAge: 1 * 24 * 60 * 60,
+          httpOnly: true,
+        });
         console.log("user", JSON.stringify(user, null, 2));
         console.log(token);
 

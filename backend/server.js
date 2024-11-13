@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const userRoutes = require('./routes/userRoutes')
 const noteRoutes = require('./routes/noteRoutes')
+const cors = require('cors')
 
 //setting up your port
 const PORT = process.env.PORT || 8080
@@ -11,10 +12,19 @@ const PORT = process.env.PORT || 8080
 //assigning the variable app to express
 const app = express()
 
+const corsOptions = {
+  origin: 'http://localhost:8081', // Allow requests from localhost:3000 (your frontend)
+  methods: ['GET', 'POST'], // Allow GET and POST requests
+  credentials: true, // Allow cookies to be sent (important for JWT in cookies)
+};
+
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+
+app.use(cors(corsOptions));
 
 //synchronizing the database and forcing it to false so we dont lose data
 db.sequelize.sync({ force: true }).then(() => {

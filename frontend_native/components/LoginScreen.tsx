@@ -1,20 +1,44 @@
 import React from 'react';
 import { Button, StyleSheet, TextInput } from 'react-native';
-
-import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
+import { AsyncStorage } from '@react-native-async-storage/async-storage'
 
-import Colors from '@/constants/Colors';
 
 export default function LoginScreen() {
 
-  const [user, onChangeUser] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+  const [login, onChangeLogin] = React.useState('bjorn');
+  const [password, onChangePassword] = React.useState('pass');
 
-  const loginFunction = () => {
+  const apiUrl = "http://localhost:3000/api/"
 
+  const loginFunction = async () => {
+    try {
+      const response = await fetch(apiUrl + "users/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "login": login,
+          "password": password
+        }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+
+      console.log(response)
+      console.log(data);
+      if (response.ok && data.token) {
+        await AsyncStorage.setItem('jwt', data.token);
+        console.log("Saved token");
+      } else {
+        console.log("Something went wrong while saving token")
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
-
   return (
     <View>
       <View style={styles.loginContainer}>
@@ -27,8 +51,8 @@ export default function LoginScreen() {
 
         <TextInput
           style={styles.inputBoxes}
-          onChangeText={onChangeUser}
-          value={user}
+          onChangeText={onChangeLogin}
+          value={login}
         />
 
         <TextInput

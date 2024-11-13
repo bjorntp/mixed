@@ -8,11 +8,29 @@ import Colors from '@/constants/Colors';
 
 export default function SignupScreen() {
 
-  const [user, onChangeUser] = React.useState('');
-  const [password, onChangePassword] = React.useState('');
+  const [email, onChangeEmail] = React.useState('bjorn@tenje.se');
+  const [user, onChangeUser] = React.useState('bjorn');
+  const [password, onChangePassword] = React.useState('pass');
 
-  const signupFunction = () => {
+  const apiUrl = "http://localhost:3000/api/"
 
+  const signupFunction = async () => {
+    console.log(user)
+    try {
+      await fetch(apiUrl + "users/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "email": email,
+          "userName": user,
+          "password": password
+        })
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -22,8 +40,14 @@ export default function SignupScreen() {
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)">
-          Enter username and password:
+          Enter email, username and password:
         </Text>
+
+        <TextInput
+          style={styles.inputBoxes}
+          onChangeText={onChangeEmail}
+          value={email}
+        />
 
         <TextInput
           style={styles.inputBoxes}
@@ -67,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputBoxes: {
-    height: 30,
+    height: 60,
     margin: 12,
     borderWidth: 1,
     padding: 10
