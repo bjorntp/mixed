@@ -11,7 +11,7 @@ export default function ListNotesScreen() {
   const apiUrl = "http://localhost:3000/api/"
 
   const NoteCard = ({ note }) => (
-    <View>
+    <View style={styles.ListItemContainer}>
       <Text>{note.title}</Text>
       <Text>{note.body}</Text>
     </View>
@@ -53,10 +53,12 @@ export default function ListNotesScreen() {
           List of all your notes.
         </Text>
 
-        <FlatList
-          data={notes}
-          renderItem={renderItem}
-        />
+        <View style={styles.ListContainer}>
+          <FlatList
+            data={notes}
+            renderItem={renderItem}
+          />
+        </View>
 
       </View>
     </View>
@@ -67,6 +69,17 @@ const styles = StyleSheet.create({
   loginContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
+  },
+  ListItemContainer: {
+    alignItems: 'center',
+    marginHorizontal: 50,
+    borderWidth: 1,
+    marginVertical: 5,
+  },
+  ListContainer: {
+    width: 800,
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   },
   homeScreenFilename: {
     marginVertical: 7,
