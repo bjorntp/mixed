@@ -34,6 +34,7 @@ const saveUser = async (req, res, next) => {
 
 const authentication = async (req, res, next) => {
   const token = req.header('Authorization')?.split(' ')[1];
+  console.log(token);
   if (!token) return res.status(401).send('No token provided, access denied.');
   try {
     const decoded = jwt.verify(token, process.env.SECRET_ACCESS_TOKEN);

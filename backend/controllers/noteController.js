@@ -8,7 +8,7 @@ const viewNotes = async (req, res) => {
     const userNotes = await notes.findAll({ where: { userId: req.userId } });
     res.json(userNotes);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
@@ -27,7 +27,7 @@ const viewNote = async (req, res) => {
     }
     res.json(note);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
@@ -36,26 +36,19 @@ const newNote = async (req, res) => {
   try {
     const { title, body } = req.body;
     const userId = req.userId;
-    console.log(req.body);
-    console.log(req.userId);
     data = {
       userId,
       title,
       body
     };
 
-    console.log(JSON.stringify(data))
-
     const note = await notes.create(data);
 
     if (note) {
-      console.log("Note created");
-      console.log("note: ", JSON.stringify(note, null, 2));
-
       return res.status(201).send(note);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
@@ -76,7 +69,7 @@ const deleteNote = async (req, res) => {
     res.json({ message: 'Note deleted ' });
 
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

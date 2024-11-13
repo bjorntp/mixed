@@ -65,10 +65,11 @@ const login = async (req, res) => {
           maxAge: 1 * 24 * 60 * 60,
           httpOnly: true,
         });
-        console.log("user", JSON.stringify(user, null, 2));
-        console.log(token);
-
-        return res.status(201).send(user);
+        const userWithtoken = {
+          ...user,
+          'token': token
+        }
+        return res.status(201).send(userWithtoken);
       } else {
         return res.status(401).send("Authentication failed, wrong password");
       }
