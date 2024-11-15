@@ -4,6 +4,7 @@ import Header from './components/header'
 import Signup from './components/signup'
 import LoginComponent from './components/login';
 import NewPost from './components/newPost';
+import EditPost from './components/editPost';
 
 
 
@@ -16,6 +17,7 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<LoginComponent />} />
             <Route path="new_post" element={<NewPost />} />
+            <Route path="edit_post" element={<EditPost />} />
           </Route>
         </Routes>
       </BrowserRouter>
