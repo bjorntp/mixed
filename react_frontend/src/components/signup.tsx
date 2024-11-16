@@ -7,8 +7,9 @@ const Signup = () => {
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
+  const apiUrl = "http://localhost:3001/api/"
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password != passwordRepeat) {
       setErrorPassword('The passwords does not match');
@@ -17,7 +18,23 @@ const Signup = () => {
     if (!emailCheck) {
       setErrorEmail('Invalid email');
     }
-    // Signup logic
+
+    try {
+      await fetch(apiUrl + "user/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "email": email,
+          "userName": userName,
+          "password": password
+        })
+      })
+    } catch (err) {
+      console.error("An error occured while signing up: ", err);
+    }
+
   }
 
   return (
