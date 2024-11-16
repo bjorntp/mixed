@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 const corsOptions = {
-  origin: 'http://localhost:8081', // Allow requests from localhost:3000 (your frontend)
+  origin: 'http://localhost:3000', // Allow requests from localhost:3000 (your frontend)
   methods: ['GET', 'POST'], // Allow GET and POST requests
   credentials: true, // Allow cookies to be sent (important for JWT in cookies)
 };
