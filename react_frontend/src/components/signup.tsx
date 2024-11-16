@@ -15,7 +15,6 @@ const Signup = () => {
     {
       baseURL: 'http://localhost:3001/api/',
       withCredentials: true,
-
     }
   );
 

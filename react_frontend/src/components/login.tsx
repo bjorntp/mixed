@@ -1,12 +1,32 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 
 const LoginComponent = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const api = axios.create(
+    {
+      baseURL: 'http://localhost:3001/api/',
+      withCredentials: true,
+    }
+  );
+
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Login logic
+
+    try {
+      const response = await api.post('users/login', { userName, password });
+      if (response.status === 201) {
+        console.log("Login successfull!")
+        setUserName('')
+        setPassword('')
+      } else {
+        console.error(response.status)
+      }
+    } catch (err) {
+      console.error("An error occured while login in: ", err);
+    }
   }
 
   return (
@@ -18,7 +38,7 @@ const LoginComponent = () => {
         </label>
         <label className="w-full flex flex-row justify-around py-2">
           Enter password:
-          <input className="border border-1" name="password" onChange={e => setPassword(e.target.value)} value={password} type="text" />
+          <input className="border border-1" type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} />
         </label>
         <div className="w-full flex flex-row justify-end">
           <button className="p-2 mt-2 bg-blue-200 rounded-md" type="submit">Login</button>

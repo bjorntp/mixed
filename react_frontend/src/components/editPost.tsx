@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 
 const EditPost = () => {
@@ -5,9 +6,27 @@ const EditPost = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const api = axios.create(
+    {
+      baseURL: 'http://localhost:3001/api/',
+      withCredentials: true,
+    }
+  );
+
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Submit post logic
+
+    try {
+      const response = await api.post('notes/edit', { title, body });
+      if (response.status === 201) {
+        setTitle('')
+        setBody('')
+      } else {
+        console.log(response.status);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
