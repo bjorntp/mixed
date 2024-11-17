@@ -49,21 +49,21 @@ const Signup = () => {
   return (
     <div className="h-svh w-svh flex flex-row bg-gray-100 align-middle justify-center">
       <form onSubmit={handleSubmit} className="bg-white p-9 my-9 w-1/2 h-fit border border-black rounded-md" >
-        <label className="w-full flex flex-row justify-around py-2">
-          Enter email:
-          <input className="border border-1" type="text" placeholder="Enter your email" name="userName" onChange={e => setEmail(e.target.value)} value={email} />
+        <label className="grid grid-cols-7 w-full justify-around py-2">
+          <p className="col-start-2">Enter email:</p>
+          <input className="border border-1 col-start-5 col-span-2" type="text" placeholder="Enter your email" name="userName" onChange={e => setEmail(e.target.value)} value={email} />
         </label>
-        <label className="w-full flex flex-row justify-around py-2">
-          Enter username:
-          <input className="border border-1" type="text" placeholder="Enter your desired user name" name="userName" onChange={e => setUserName(e.target.value)} value={userName} />
+        <label className="grid grid-cols-7 w-full justify-around py-2">
+          <p className="col-start-2">Enter username:</p>
+          <input className="border border-1 col-start-5 col-span-2" type="text" placeholder="Enter your desired user name" name="userName" onChange={e => setUserName(e.target.value)} value={userName} />
         </label>
-        <label className="w-full flex flex-row justify-around py-2">
-          Enter password:
-          <input className="border border-1" name="password" onChange={e => setPassword(e.target.value)} value={password} type="password" />
+        <label className="grid grid-cols-7 w-full justify-around py-2">
+          <p className="col-start-2">Enter password:</p>
+          <input className="border border-1 col-start-5 col-span-2" name="password" onChange={e => setPassword(e.target.value)} value={password} type="password" />
         </label>
-        <label className="w-full flex flex-row justify-around py-2">
-          Repeat password:
-          <input className="border border-1" name="passwordRepeat" onChange={e => setPasswordRepeat(e.target.value)} value={passwordRepeat} type="password" />
+        <label className="grid grid-cols-7 w-full justify-around py-2">
+          <p className="col-start-2 col-span-2">Repeat password:</p>
+          <input className="border border-1 col-start-5 col-span-2" name="passwordRepeat" onChange={e => setPasswordRepeat(e.target.value)} value={passwordRepeat} type="password" />
         </label>
         <div className="w-full flex flex-row justify-end">
           <button className="p-2 mt-2 bg-blue-200 rounded-md" type="submit">Login</button>
