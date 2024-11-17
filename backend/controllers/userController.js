@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const db = require("../models");
 const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
 
 const User = db.users;
 
@@ -40,19 +41,16 @@ const login = async (req, res) => {
   try {
     const { login, password } = req.body;
 
+    console.log(login);
+
     let user = await User.findOne({
       where: {
-        email: login
+        [Op.or]: [
+          { email: login },
+          { userName: login }
+        ]
       }
     });
-
-    if (!user) {
-      user = await User.findOne({
-        where: {
-          userName: login
-        }
-      })
-    };
 
     if (user) {
       const isSame = await bcrypt.compare(password, user.passwordHash);

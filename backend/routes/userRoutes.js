@@ -11,6 +11,9 @@ const router = express.Router()
 router.post('/signup', userAuth.saveUser, signup)
 
 //login route
-router.post('/login', login )
+router.post('/login', login)
+
+// validate token route
+router.get('/auth', userAuth.validate)
 
 module.exports = router
