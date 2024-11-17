@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const LoginComponent = () => {
-  const [userName, setUserName] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const api = axios.create(
     {
@@ -16,16 +18,15 @@ const LoginComponent = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post('users/login', { userName, password });
+      const response = await api.post('users/login', { login, password });
       if (response.status === 201) {
         console.log("Login successfull!")
-        setUserName('')
-        setPassword('')
+        navigate('/');
       } else {
         console.error(response.status)
       }
     } catch (err) {
-      console.error("An error occured while login in: ", err);
+      console.error("An error occured while loging in: ", err);
     }
   }
 
@@ -34,7 +35,7 @@ const LoginComponent = () => {
       <form onSubmit={handleSubmit} className="bg-white p-9 my-9 w-1/2 h-fit border border-black rounded-md" >
         <label className="w-full grid grid-cols-7 justify-around py-2">
           <p className="col-start-2" >Enter username:</p>
-          <input className="col-start-5 col-span-2 padding-1 border border-1 rounded-md px-1" type="text" placeholder="Enter your user name" name="userName" onChange={e => setUserName(e.target.value)} value={userName} />
+          <input className="col-start-5 col-span-2 padding-1 border border-1 rounded-md px-1" type="text" placeholder="Enter your user name" name="userName" onChange={e => setLogin(e.target.value)} value={login} />
         </label>
         <label className="w-full grid grid-cols-7 justify-around py-2">
           <p className="col-start-2">Enter password:</p>
