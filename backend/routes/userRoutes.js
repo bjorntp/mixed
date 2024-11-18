@@ -8,12 +8,15 @@ const router = express.Router()
 
 //signup endpoint
 //passing the middleware function to the signup
-router.post('/signup', userAuth.saveUser, signup)
+router.post('/signup', userAuth.saveUser, signup);
 
 //login route
-router.post('/login', login)
+router.post('/login', login);
 
 // validate token route
-router.get('/auth', userAuth.validate)
+router.get('/auth', userAuth.validate);
+
+// log out user
+router.post('/logout', userAuth.eliminate);
 
 module.exports = router

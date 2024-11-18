@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loginSignOut, setLogSign] = useState(<></>);
+  const location = useLocation();
+  const navigate = useNavigate();
 
 
   const api = axios.create(
@@ -14,33 +17,61 @@ const Header = () => {
     }
   );
   async function checkLoggedIn() {
+    try {
+      const response = await api.get('/users/auth');
 
+      console.log(response.status);
+      if (response.status === 200) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    } catch (error) {
+      setLoggedIn(false);
+    }
+
+  }
+
+  const logout = async () => {
+    try {
+      await api.post('users/logout', {}, { withCredentials: true });
+      navigate('/');
+    } catch (error) {
+      console.error('Error loggin out');
+    }
   }
 
   useEffect(() => {
     if (loggedIn) {
       setLogSign(
-        <button className="bg-blue-300 px-12 py-3 rounded-md">
+        <button className="bg-blue-300 px-12 py-3 my-3 rounded-md" onClick={logout}>
           Sign out
         </button>
       );
     } else {
       setLogSign(
-        <button className="bg-blue-300 px-12 py-3 my-3 rounded-md">
-          Login
-        </button>
+        <Link to="/login">
+          <button className="bg-blue-300 px-12 py-3 my-3 rounded-md">
+            Login
+          </button>
+        </Link>
       );
     }
   }, [loggedIn]);
+
+  useEffect(() => {
+    checkLoggedIn();
+    console.log(location);
+  }, [location])
 
 
   return (
     <>
       <header className="flex justify-around items-center border-b border-b-gray-400 min-h-[7vh]">
-        <Link to="/">LOGO HERE</Link>
-        <Link to="/login">
-          {loginSignOut}
-        </Link>
+        <Link to="/">Home</Link>
+        <Link to="/signup">Signup</Link>
+        <Link to="/new_post">New post</Link>
+        {loginSignOut}
       </header>
       <Outlet />
     </>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 const Signup = () => {
@@ -9,7 +10,7 @@ const Signup = () => {
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [errorPassword, setErrorPassword] = useState(<></>);
   const [errorEmail, setErrorEmail] = useState(<></>);
-  const apiUrl = "http://localhost:3001/api/"
+  const navigate = useNavigate();
 
   const api = axios.create(
     {
@@ -37,10 +38,7 @@ const Signup = () => {
         const response = await api.post('users/signup', { email, userName, password });
         if (response.status === 201) {
           console.log("Signup successfull!")
-          setEmail('')
-          setUserName('')
-          setPassword('')
-          setPasswordRepeat('')
+          navigate('/')
         } else {
           console.error(response.status)
         }

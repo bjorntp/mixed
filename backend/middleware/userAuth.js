@@ -47,21 +47,26 @@ const authentication = async (req, res, next) => {
   }
 }
 
-const validate = async (req, res, next) => {
+const validate = async (req, res) => {
   const token = req.cookies.jwt;
   try {
     const decoded = jwt.verify(token, process.env.SECRET_ACCESS_TOKEN);
     req.userId = decoded.id;
     console.log("Authenticated with userid ", decoded.id)
-    res.status(201).send('Token validated');
-    next();
+    res.status(200).send('Token validated');
   } catch (error) {
     res.status(403).send('Token is invalid')
   }
 }
 
+const eliminate = async (req, res) => {
+  res.clearCookie('jwt');
+  res.status(200).send();
+}
+
 module.exports = {
   saveUser,
   authentication,
-  validate
+  validate,
+  eliminate
 };
