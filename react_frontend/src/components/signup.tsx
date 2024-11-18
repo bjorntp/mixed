@@ -36,7 +36,7 @@ const Signup = () => {
       try {
         const response = await api.post('users/signup', { email, userName, password });
         if (response.status === 201) {
-          console.log("Login successfull!")
+          console.log("Signup successfull!")
           setEmail('')
           setUserName('')
           setPassword('')
@@ -70,7 +70,7 @@ const Signup = () => {
           <input className="border border-1 col-start-5 col-span-2" name="passwordRepeat" onChange={e => setPasswordRepeat(e.target.value)} value={passwordRepeat} type="password" />
         </label>
         <div className="w-full flex flex-row justify-end">
-          <button className="p-2 mt-2 bg-blue-200 rounded-md" type="submit">Login</button>
+          <button className="p-2 mt-2 bg-blue-200 rounded-md" type="submit">Sign up</button>
         </div>
       </form>
     </div>
