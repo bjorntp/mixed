@@ -19,8 +19,6 @@ const Header = () => {
   async function checkLoggedIn() {
     try {
       const response = await api.get('/users/auth');
-
-      console.log(response.status);
       if (response.status === 200) {
         setLoggedIn(true);
       } else {
@@ -61,7 +59,6 @@ const Header = () => {
 
   useEffect(() => {
     checkLoggedIn();
-    console.log(location);
   }, [location])
 
 
@@ -71,6 +68,7 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/signup">Signup</Link>
         <Link to="/new_post">New post</Link>
+        <Link to="/edit_post">Edit post</Link>
         {loginSignOut}
       </header>
       <Outlet />

@@ -3,7 +3,18 @@ const db = require("../models");
 
 const notes = db.notes;
 
-const viewNotes = async (req, res) => {
+const viewNotesAll = async (req, res) => {
+  try {
+    const userNotes = await notes.findAll();
+    res.json(userNotes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+
+}
+
+const viewNotesUser = async (req, res) => {
   try {
     const userNotes = await notes.findAll({ where: { userId: req.userId } });
     res.json(userNotes);
@@ -76,7 +87,8 @@ const deleteNote = async (req, res) => {
 
 module.exports = {
   viewNote,
-  viewNotes,
   newNote,
   deleteNote,
+  viewNotesAll,
+  viewNotesUser
 };
