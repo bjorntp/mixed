@@ -41,8 +41,6 @@ const login = async (req, res) => {
   try {
     const { login, password } = req.body;
 
-    console.log(login);
-
     let user = await User.findOne({
       where: {
         [Op.or]: [
@@ -81,9 +79,29 @@ const login = async (req, res) => {
   }
 };
 
+const getName = async (req, res) => {
+  try {
+    const { id } = req.query;
+    let user = await User.findOne({
+      where: {
+        id: id
+      }
+    });
+    if (user) {
+      return res.status(200).send(user);
+    } else {
+      return res.status(404).send("No user found")
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' })
+  }
+}
+
 module.exports = {
   signup,
-  login
+  login,
+  getName
 };
 
 

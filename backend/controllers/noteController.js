@@ -5,14 +5,21 @@ const notes = db.notes;
 
 const viewNotesAll = async (req, res) => {
   try {
-    const userNotes = await notes.findAll();
+    const userNotes = await notes.findAll({
+      include: [
+        {
+          model: db.users,
+          attributes: ['userName']
+        }
+      ]
+    });
+
     res.json(userNotes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
-
-}
+};
 
 const viewNotesUser = async (req, res) => {
   try {

@@ -6,6 +6,9 @@ interface Note {
   id: string;
   title: string;
   body: string;
+  user: {
+    userName: string;
+  };
 }
 
 const HomeComponent = () => {
@@ -34,6 +37,7 @@ const HomeComponent = () => {
           <div key={index} className="bg-white p-9 my-9 w-1/2 h-fit border border-black rounded-md">
             <h3>Titel: {obj.title}</h3>
             <p>Inehåll: {obj.body}</p>
+            <p>Användare: {obj.user.userName}</p>
           </div>
         ));
         setNotes(cards);
