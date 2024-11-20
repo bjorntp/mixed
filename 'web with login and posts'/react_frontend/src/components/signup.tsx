@@ -23,13 +23,13 @@ const Signup = () => {
     e.preventDefault();
     const passwordCheck = password != passwordRepeat;
     if (passwordCheck) {
-      setErrorPassword(<p>The passwords does not match</p>);
+      setErrorPassword(<p className='text-red-600'>The passwords does not match</p>);
     } else {
       setErrorPassword(<></>);
     }
     const emailCheck = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
     if (!emailCheck) {
-      setErrorEmail(<p>Invalid email</p>);
+      setErrorEmail(<p className='text-red-600'>Invalid email</p>);
     } else {
       setErrorEmail(<></>);
     }
