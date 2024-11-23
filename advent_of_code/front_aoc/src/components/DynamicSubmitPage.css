@@ -46,3 +46,22 @@
   background-color: white;
   color: var(--light-red);
 }
+
+.TextAndAnswer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.AnswerBox {
+  justify-content: center;
+}
+.AnswerHeader {
+
+}
+
+.AnswerText {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
