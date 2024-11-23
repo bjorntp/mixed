@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aoc.aoc.solutions.*;
+import com.aoc.aoc.solutions.S_01;
+import com.aoc.aoc.solutions.S_02;
+import com.aoc.aoc.solutions.Solution;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")

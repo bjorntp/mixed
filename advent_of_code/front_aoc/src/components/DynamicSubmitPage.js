@@ -16,7 +16,10 @@ const DynamicSubmitPage = () => {
       message: formData.get("message"),
     };
 
-    const api = "http://localhost:8080/solutions/"
+    let api = "http://localhost:8080/solutions/"
+    if (id < 10) {
+      api = api + "0";
+    }
     // Send the data to the API
     fetch(api + id, {
       method: "POST",
