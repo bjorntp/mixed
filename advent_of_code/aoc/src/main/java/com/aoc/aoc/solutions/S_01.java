@@ -16,7 +16,7 @@ public class S_01 extends Solution {
         level++;
       }
     }
-    return "" + level;
+    return Integer.toString(level);
   }
 
   @Override
@@ -31,10 +31,10 @@ public class S_01 extends Solution {
       }
       if (level == -1) {
         position = i + 1;
-        break;
+        return Integer.toString(position);
       }
     }
-    return "" + position;
+    return Integer.toString(position);
   }
 
 }
