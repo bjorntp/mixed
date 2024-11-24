@@ -8,33 +8,57 @@ public class S_01 extends Solution {
 
   @Override
   public String task_1() {
-    int level = 0;
-    for (int i = 0; i < input.length(); i++) {
-      if (input.charAt(i) == ')') {
-        level--;
-      } else if (input.charAt(i) == '(') {
-        level++;
+    String[] lines = input.split("\n");
+    int counter = 0;
+    for (String line : lines) {
+      char c1 = '0', c2 = '0';
+      for (int i = 0; i < line.length(); i++) {
+        if (Character.isDigit(line.charAt(i))) {
+          c1 = line.charAt(i);
+          break;
+        }
       }
+      for (int i = line.length() - 1; i >= 0; i--) {
+        if (Character.isDigit(line.charAt(i))) {
+          c2 = line.charAt(i);
+          break;
+        }
+      }
+      counter += Integer.parseInt(Character.toString(c1) + Character.toString(c2));
     }
-    return Integer.toString(level);
+    return Integer.toString(counter);
   }
 
   @Override
   public String task_2() {
-    int level = 0;
-    int position = -1;
-    for (int i = 0; i < input.length(); i++) {
-      if (input.charAt(i) == ')') {
-        level--;
-      } else if (input.charAt(i) == '(') {
-        level++;
+    String[] lines = input.split("\n");
+    int counter = 0;
+    for (String line : lines) {
+      char c1 = '0', c2 = '0';
+      line = line.replace("one", "one1one");
+      line = line.replace("two", "two2two");
+      line = line.replace("three", "three3three");
+      line = line.replace("four", "four4four");
+      line = line.replace("five", "five5five");
+      line = line.replace("six", "six6six");
+      line = line.replace("seven", "seven7seven");
+      line = line.replace("eight", "eight8eight");
+      line = line.replace("nine", "nine9nine");
+      for (int i = 0; i < line.length(); i++) {
+        if (Character.isDigit(line.charAt(i))) {
+          c1 = line.charAt(i);
+          break;
+        }
       }
-      if (level == -1) {
-        position = i + 1;
-        return Integer.toString(position);
+      for (int i = line.length() - 1; i >= 0; i--) {
+        if (Character.isDigit(line.charAt(i))) {
+          c2 = line.charAt(i);
+          break;
+        }
       }
+      counter += Integer.parseInt(Character.toString(c1) + Character.toString(c2));
     }
-    return Integer.toString(position);
+    return Integer.toString(counter);
   }
 
 }
