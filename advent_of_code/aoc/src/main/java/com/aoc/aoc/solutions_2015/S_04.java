@@ -1,4 +1,4 @@
-package com.aoc.aoc.solutions;
+package com.aoc.aoc.solutions_2015;
 
 import java.math.BigInteger;
 import java.security.*;

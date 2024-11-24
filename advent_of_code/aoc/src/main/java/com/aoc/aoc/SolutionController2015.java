@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aoc.aoc.solutions.*;
+import com.aoc.aoc.solutions_2015.*;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class SolutionController {
+public class SolutionController2015 {
 
-  public SolutionController() {
+  public SolutionController2015() {
   }
 
   @PostMapping("/solutions/01")

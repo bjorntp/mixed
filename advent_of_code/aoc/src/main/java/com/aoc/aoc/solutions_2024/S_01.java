@@ -1,4 +1,4 @@
-package com.aoc.aoc.solutions;
+package com.aoc.aoc.solutions_2024;
 
 public class S_01 extends Solution {
 

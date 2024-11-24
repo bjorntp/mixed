@@ -1,4 +1,4 @@
-package com.aoc.aoc;
+package com.aoc.aoc.solutions_2020;
 
 public abstract class Solution {
 
