@@ -1,10 +1,7 @@
 package com.aoc.aoc.solutions_2015;
 
-import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.sun.org.apache.xpath.internal.operations.String;
 
 public class S_06 extends Solution {
 

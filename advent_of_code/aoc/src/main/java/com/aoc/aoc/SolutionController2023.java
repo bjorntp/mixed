@@ -18,7 +18,7 @@ public class SolutionController2023 {
   public SolutionController2023() {
   }
 
-  @PostMapping("/solutions/2023/01")
+  @PostMapping("/solutions/2023/1")
   public List<String> solution_01(@RequestBody Map<String, String> json) {
     Solution s_01 = new S_01(json.get("message"));
     return Arrays.asList(s_01.task_1(), s_01.task_2());

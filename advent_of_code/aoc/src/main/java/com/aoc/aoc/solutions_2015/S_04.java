@@ -12,7 +12,6 @@ public class S_04 extends Solution {
   @Override
   public String task_1() {
     try {
-      String testString = "";
       MessageDigest md = MessageDigest.getInstance("MD5");
       byte[] messageDigest;
       BigInteger no;
@@ -41,7 +40,6 @@ public class S_04 extends Solution {
   @Override
   public String task_2() {
     try {
-      String testString = "";
       MessageDigest md = MessageDigest.getInstance("MD5");
       byte[] messageDigest;
       BigInteger no;
