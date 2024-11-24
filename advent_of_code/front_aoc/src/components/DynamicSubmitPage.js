@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import './DynamicSubmitPage.css';
 
 const DynamicSubmitPage = () => {
-  const { id } = useParams(); // Get the dynamic `id` from the route
+  const { year, id } = useParams(); // Get the dynamic `id` from the route
   const location = useLocation(); // Access location information if needed
   const navigate = useNavigate();
   const [answerTwo, setAnswerTwo] = useState(<></>)
@@ -18,12 +18,8 @@ const DynamicSubmitPage = () => {
     };
 
     let api = "http://localhost:8080/solutions/"
-    if (id < 10) {
-      api = api + "0";
-    }
-    // Send the data to the API
     console.log(JSON.stringify(data))
-    fetch(api + id, {
+    fetch(api + year + "/" + id, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

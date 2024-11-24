@@ -64,7 +64,8 @@
   display: grid;
   gap: 10px;
   margin: auto;
-  grid: 'button button button button';
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  grid: 'button button button button button';
   padding: 20px;
 }
 
