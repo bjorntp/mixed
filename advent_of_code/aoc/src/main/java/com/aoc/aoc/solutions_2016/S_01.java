@@ -1,8 +1,8 @@
 package com.aoc.aoc.solutions;
 
-public class S_04 extends Solution {
+public class S_01 extends Solution {
 
-  public S_04(String input) {
+  public S_01(String input) {
     super(input);
   }
 
