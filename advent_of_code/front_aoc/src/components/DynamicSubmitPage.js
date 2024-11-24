@@ -50,7 +50,7 @@ const DynamicSubmitPage = () => {
 
   return (
     <div className='MainBox'>
-      <h1>Page {id}</h1>
+      <h1>Solution {id}</h1>
       <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
         <div>
           <label htmlFor="message" style={{ fontSize: "18px" }}>
