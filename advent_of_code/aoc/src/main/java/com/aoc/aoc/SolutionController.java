@@ -48,7 +48,7 @@ public class SolutionController {
     return Arrays.asList(s_05.task_1(), s_05.task_2());
   }
 
-  @PostMapping("/solutions/05")
+  @PostMapping("/solutions/06")
   public List<String> solution_06(@RequestBody Map<String, String> json) {
     Solution s_06 = new S_06(json.get("message"));
     return Arrays.asList(s_06.task_1(), s_06.task_2());
