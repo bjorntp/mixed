@@ -42,6 +42,18 @@ public class SolutionController {
     return Arrays.asList(s_04.task_1(), s_04.task_2());
   }
 
+  @PostMapping("/solutions/05")
+  public List<String> solution_05(@RequestBody Map<String, String> json) {
+    Solution s_05 = new S_05(json.get("message"));
+    return Arrays.asList(s_05.task_1(), s_05.task_2());
+  }
+
+  @PostMapping("/solutions/05")
+  public List<String> solution_06(@RequestBody Map<String, String> json) {
+    Solution s_06 = new S_06(json.get("message"));
+    return Arrays.asList(s_06.task_1(), s_06.task_2());
+  }
+
   @PostMapping("/solutions/{id}")
   public List<String> default_solution() {
     return Arrays.asList("Not yet implemented", "Not yet implemented");
