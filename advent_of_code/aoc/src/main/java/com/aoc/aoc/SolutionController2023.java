@@ -24,6 +24,12 @@ public class SolutionController2023 {
     return Arrays.asList(s_01.task_1(), s_01.task_2());
   }
 
+  @PostMapping("/solutions/2023/2")
+  public List<String> solution_02(@RequestBody Map<String, String> json) {
+    Solution s_02 = new S_02(json.get("message"));
+    return Arrays.asList(s_02.task_1(), s_02.task_2());
+  }
+
   @PostMapping("/solutions/2023/{id}")
   public List<String> default_solution() {
     return Arrays.asList("Not yet implemented", "Not yet implemented");
