@@ -1,5 +1,6 @@
 package com.aoc.aoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,12 @@ public class SolutionController2023 {
   public List<String> solution_03(@RequestBody Map<String, String> json) {
     Solution s_03 = new S_03(json.get("message"));
     return Arrays.asList(s_03.task_1(), s_03.task_2());
+  }
+
+  @PostMapping("/solutions/2023/4")
+  public List<String> solution_04(@RequestBody Map<String, String> json) {
+    Solution sol = new S_04(json.get("message"));
+    return Arrays.asList(sol.task_1(), sol.task_2());
   }
 
   @PostMapping("/solutions/2023/5")
