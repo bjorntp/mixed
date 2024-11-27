@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import './DynamicSubmitPage.css';
 
 const DynamicSubmitPage = () => {
   const { year, id } = useParams(); // Get the dynamic `id` from the route
-  const location = useLocation(); // Access location information if needed
   const navigate = useNavigate();
   const [answerTwo, setAnswerTwo] = useState(<></>)
   const [answerOne, setAnswerOne] = useState(<></>)
