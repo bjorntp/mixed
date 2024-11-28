@@ -1,5 +1,7 @@
 package com.aoc.aoc.solutions_2015;
 
+import com.aoc.aoc.lib.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

@@ -1,5 +1,7 @@
 package com.aoc.aoc.solutions_2023;
 
+import com.aoc.aoc.lib.*;
+
 public class S_06 extends Solution {
 
   public S_06(String input) {
@@ -15,7 +17,6 @@ public class S_06 extends Solution {
     String[] distances = row_2.split(" ");
     for (int i = 0; i < times.length; i++) {
       int lowerBreak = 0, upperBreak = 0;
-      int ms = 1;
       for (int j = 0; j < Integer.parseInt(times[i]); j++) {
         if (j * (Integer.parseInt(times[i]) - j) >= Integer.parseInt(distances[i])) {
           lowerBreak = j;

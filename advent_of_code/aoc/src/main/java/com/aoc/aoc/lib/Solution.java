@@ -1,4 +1,4 @@
-package com.aoc.aoc.solutions_2022;
+package com.aoc.aoc.lib;
 
 public abstract class Solution {
 

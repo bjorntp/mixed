@@ -2,19 +2,22 @@ package com.aoc.aoc.solutions_2023;
 
 import com.aoc.aoc.lib.*;
 
-public class S_07 extends Solution {
+public class S_09 extends Solution {
 
-  public S_07(String input) {
+  protected String input;
+
+  public S_09(String input) {
     super(input);
   }
 
-  @Override
   public String task_1() {
-    return "not implemented";
+
+    return "";
   }
 
-  @Override
   public String task_2() {
-    return "not implemented";
+
+    return "";
   }
+
 }

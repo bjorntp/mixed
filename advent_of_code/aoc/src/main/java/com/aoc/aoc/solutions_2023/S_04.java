@@ -1,8 +1,7 @@
 package com.aoc.aoc.solutions_2023;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import com.aoc.aoc.lib.*;
 
 public class S_04 extends Solution {
 

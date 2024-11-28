@@ -2,7 +2,6 @@ package com.aoc.aoc.solutions_2023;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ArrayList;
 import com.aoc.aoc.lib.*;
 
 /**
@@ -76,7 +75,6 @@ public class S_08 extends Solution {
     }
     Long[] steps = new Long[currentNodes.length];
     for (int i = 0; i < currentNodes.length; i++) {
-      Boolean repeated = false;
       String currentNode = currentNodes[i];
       String endNode = "";
       int stepsBetween = 0;

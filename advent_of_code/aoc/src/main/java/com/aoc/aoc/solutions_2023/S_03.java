@@ -1,5 +1,7 @@
 package com.aoc.aoc.solutions_2023;
 
+import com.aoc.aoc.lib.*;
+
 public class S_03 extends Solution {
 
   public S_03(String input) {

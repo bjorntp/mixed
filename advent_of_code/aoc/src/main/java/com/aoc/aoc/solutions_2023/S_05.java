@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
+import com.aoc.aoc.lib.*;
 
 public class S_05 extends Solution {
 
