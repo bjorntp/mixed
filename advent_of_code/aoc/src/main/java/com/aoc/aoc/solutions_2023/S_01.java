@@ -8,6 +8,7 @@ public class S_01 extends Solution {
 
   @Override
   public String task_1() {
+
     String[] lines = input.split("\n");
     int counter = 0;
     for (String line : lines) {
