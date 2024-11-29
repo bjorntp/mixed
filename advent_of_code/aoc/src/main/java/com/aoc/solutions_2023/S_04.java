@@ -1,7 +1,7 @@
-package com.aoc.aoc.solutions_2023;
+package com.aoc.solutions_2023;
 
 import java.util.ArrayList;
-import com.aoc.aoc.lib.*;
+import com.aoc.lib.*;
 
 public class S_04 extends Solution {
 

@@ -1,4 +1,4 @@
-package com.aoc.aoc;
+package com.aoc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

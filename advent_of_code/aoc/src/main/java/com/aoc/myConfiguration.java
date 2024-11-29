@@ -1,5 +1,5 @@
 
-package com.aoc.aoc;
+package com.aoc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

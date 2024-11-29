@@ -1,11 +1,11 @@
-package com.aoc.aoc.solutions_2023;
+package com.aoc.solutions_2023;
 
 import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
-import com.aoc.aoc.lib.*;
+import com.aoc.lib.*;
 
 public class S_05 extends Solution {
 

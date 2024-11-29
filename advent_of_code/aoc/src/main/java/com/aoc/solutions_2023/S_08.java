@@ -1,8 +1,8 @@
-package com.aoc.aoc.solutions_2023;
+package com.aoc.solutions_2023;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.aoc.aoc.lib.*;
+import com.aoc.lib.*;
 
 /**
  * S_08

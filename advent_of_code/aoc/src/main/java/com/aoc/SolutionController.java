@@ -1,4 +1,4 @@
-package com.aoc.aoc;
+package com.aoc;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aoc.aoc.lib.*;
+import com.aoc.lib.*;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -26,7 +26,7 @@ public class SolutionController {
     System.out.println("Year: " + year + ". Day: " + day);
 
     try {
-      String className = "com.aoc.aoc.solutions_" + year + ".S_" + String.format("%02d", day);
+      String className = "com.aoc.solutions_" + year + ".S_" + String.format("%02d", day);
       System.out.println(className);
       Class<?> clazz = Class.forName(className);
 

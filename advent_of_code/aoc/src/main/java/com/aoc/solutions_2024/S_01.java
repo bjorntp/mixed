@@ -1,6 +1,6 @@
-package com.aoc.aoc.solutions_2024;
+package com.aoc.solutions_2024;
 
-import com.aoc.aoc.lib.*;
+import com.aoc.lib.*;
 
 public class S_01 extends Solution {
 

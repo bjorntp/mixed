@@ -1,4 +1,4 @@
-package com.aoc.aoc.lib;
+package com.aoc.lib;
 
 /**
  * InputHandler
