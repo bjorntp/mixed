@@ -15,11 +15,19 @@ public class S_10 extends Solution {
     StartingPoint sp = new StartingPoint(m);
     PointMover pt = new PointMover(sp.getsX(), sp.getsY(), sp.getDirection(), m);
     pt.nextPoint();
+    int distance = 1;
     while (m[pt.getPosY()][pt.getPosX()] != 'S') {
       pt.nextPoint();
+      distance++;
     }
     printMatrix(pt.getNewMap());
-    return "";
+    distance = (distance + 1) / 2;
+    return "" + distance;
+  }
+
+  @Override
+  public String task_2() {
+    return "Not implemented";
   }
 
   private void printMatrix(Character[][] m) {
@@ -56,19 +64,19 @@ public class S_10 extends Solution {
           }
         }
       }
-      if (sX != 0 && matrix[sX - 1][sY] != '.') {
-        if (matrix[sX - 1][sY] == '-' || matrix[sX - 1][sY] == 'F' || matrix[sX - 1][sY] == 'L') {
+      if (sX != 0 && matrix[sY][sX - 1] != '.') {
+        if (matrix[sY][sX - 1] == '-' || matrix[sY][sY - 1] == 'F' || matrix[sY][sY - 1] == 'L') {
           direction = "LEFT";
           return;
         }
-      } else if (matrix[sX + 1][sY] != '.') {
-        if (matrix[sX + 1][sY] == '-' || matrix[sX + 1][sY] == 'J' || matrix[sX + 1][sY] == '7') {
+      } else if (matrix[sY][sY + 1] != '.') {
+        if (matrix[sY][sX + 1] == '-' || matrix[sY][sX + 1] == 'J' || matrix[sY][sX + 1] == '7') {
           direction = "RIGHT";
           return;
         }
 
       } else if (sY != 0 && matrix[sX][sY - 1] != '.') {
-        if (matrix[sX][sY - 1] == '|' || matrix[sX][sY - 1] == 'F' || matrix[sX][sY - 1] == '7') {
+        if (matrix[sY - 1][sX] == '|' || matrix[sY - 1][sX] == 'F' || matrix[sY - 1][sX] == '7') {
           direction = "UP";
           return;
         }
@@ -107,14 +115,12 @@ public class S_10 extends Solution {
       for (int i = 0; i < newMap.length; i++) {
         for (int j = 0; j < newMap[i].length; j++) {
           newMap[i][j] = '.';
-          System.out.print(newMap[i][j]);
         }
-        System.out.println("");
       }
     }
 
     public void nextPoint() {
-      newMap[posY][posX] = '+';
+      newMap[posY][posX] = originalMap[posY][posX];
       switch (direction) {
         case "LEFT":
           posX--;
@@ -184,11 +190,6 @@ public class S_10 extends Solution {
     public int getPosY() {
       return posY;
     }
-  }
-
-  @Override
-  public String task_2() {
-    return "";
   }
 
 }
