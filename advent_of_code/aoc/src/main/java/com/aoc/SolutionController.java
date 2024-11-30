@@ -23,11 +23,9 @@ public class SolutionController {
   public List<String> solve(@PathVariable int year, @PathVariable int day, @RequestBody Map<String, String> json) {
     String message = json.get("message");
     Solution solution;
-    System.out.println("Year: " + year + ". Day: " + day);
 
     try {
       String className = "com.aoc.solutions_" + year + ".S_" + String.format("%02d", day);
-      System.out.println(className);
       Class<?> clazz = Class.forName(className);
 
       solution = (Solution) clazz.getDeclaredConstructor(String.class).newInstance(message);
