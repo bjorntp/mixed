@@ -23,7 +23,15 @@ const viewNotesAll = async (req, res) => {
 
 const viewNotesUser = async (req, res) => {
   try {
-    const userNotes = await notes.findAll({ where: { userId: req.userId } });
+    const userNotes = await notes.findAll({
+      include: [
+        {
+          model: db.users,
+          attributes: ['userName']
+        }
+      ],
+      where: { userId: req.userId }
+    });
     res.json(userNotes);
   } catch (error) {
     console.error(error);
@@ -92,10 +100,34 @@ const deleteNote = async (req, res) => {
   }
 };
 
+const editNote = async (req, res) => {
+  try {
+    const { noteId, title, body } = req.body;
+    const userId = req.userId;
+    const testNote = await notes.findOne({ where: { id: noteId, userId } });
+    if (!testNote) {
+      throw Error();
+    }
+    data = {
+      title,
+      body
+    };
+    const note = await notes.update(data, { where: { id: noteId } });
+    if (note) {
+      return res.status(200).send();
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
 module.exports = {
   viewNote,
   newNote,
   deleteNote,
   viewNotesAll,
-  viewNotesUser
+  viewNotesUser,
+  editNote,
 };
