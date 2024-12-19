@@ -68,7 +68,7 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/signup">Signup</Link>
         <Link to="/new_post">New post</Link>
-        <Link to="/edit_post">Edit post</Link>
+        <Link to="/my_posts">My posts</Link>
         {loginSignOut}
       </header>
       <Outlet />

@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom';
 
 const EditPost = () => {
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const { id } = useParams();
+  const location = useLocation();
+  const [title, setTitle] = useState(location.state?.title || '');
+  const [body, setBody] = useState(location.state?.body || '');
 
   const api = axios.create(
     {
@@ -17,8 +20,8 @@ const EditPost = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post('notes/edit', { title, body });
-      if (response.status === 201) {
+      const response = await api.post('notes/edit', { noteId: id, title, body });
+      if (response.status === 200) {
         setTitle('')
         setBody('')
       } else {
