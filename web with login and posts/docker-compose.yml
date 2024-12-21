@@ -13,7 +13,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
-  app:
+  backend_app:
     depends_on:
       - pgdb
     build: ./backend
@@ -27,6 +27,23 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - DB_PORT=${DB_PORT}
+    stdin_open: true
+    tty: true
+
+  frontend_app:
+    depends_on:
+      - pgdb
+      - backend_app
+    build: ./react_frontend
+    volumes:
+      - ./react_frontend:/app
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_BASE_URL=http://localhost:3001/api/
+      - PORT=3000
     stdin_open: true
     tty: true
 

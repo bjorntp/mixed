@@ -5,14 +5,15 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loginSignOut, setLogSign] = useState(<></>);
+  const [loginSignOut, setLogSign] = useState(<>SIGNUPBUTTON</>);
+  const [signUpButton, setSignUpButton] = useState(<>NOT LOADED</>);
   const location = useLocation();
   const navigate = useNavigate();
 
 
   const api = axios.create(
     {
-      baseURL: 'http://localhost:3001/api/',
+      baseURL: process.env.REACT_APP_API_BASE_URL,
       withCredentials: true,
     }
   );
@@ -46,6 +47,9 @@ const Header = () => {
           Sign out
         </button>
       );
+      setSignUpButton(
+        <></>
+      );
     } else {
       setLogSign(
         <Link to="/login">
@@ -53,6 +57,9 @@ const Header = () => {
             Login
           </button>
         </Link>
+      );
+      setSignUpButton(
+        <Link to="/signup">Signup</Link>
       );
     }
   }, [loggedIn]);
@@ -66,9 +73,9 @@ const Header = () => {
     <>
       <header className="flex justify-around items-center border-b border-b-gray-400 min-h-[7vh]">
         <Link to="/">Home</Link>
-        <Link to="/signup">Signup</Link>
         <Link to="/new_post">New post</Link>
         <Link to="/my_posts">My posts</Link>
+        {signUpButton}
         {loginSignOut}
       </header>
       <Outlet />
