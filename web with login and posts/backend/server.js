@@ -5,6 +5,7 @@ const db = require('./models')
 const userRoutes = require('./routes/userRoutes')
 const noteRoutes = require('./routes/noteRoutes')
 const cors = require('cors')
+require("dotenv").config();
 
 //setting up your port
 const PORT = process.env.PORT || 8080
@@ -27,7 +28,7 @@ app.use(cookieParser())
 app.use(cors(corsOptions));
 
 //synchronizing the database and forcing it to false so we dont lose data
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   console.log("db has been re sync")
 })
 
