@@ -5,8 +5,10 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loginSignOut, setLogSign] = useState(<>SIGNUPBUTTON</>);
-  const [signUpButton, setSignUpButton] = useState(<>NOT LOADED</>);
+  const [loginSignOut, setLogSign] = useState(<></>);
+  const [signUpButton, setSignUpButton] = useState(<></>);
+  const [myPosts, setMyPosts] = useState(<></>);
+  const [newPost, setNewPost] = useState(<></>);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -50,6 +52,12 @@ const Header = () => {
       setSignUpButton(
         <></>
       );
+      setNewPost(
+        <Link to="/new_post">New post</Link>
+      );
+      setMyPosts(
+        <Link to="/my_posts">My posts</Link>
+      );
     } else {
       setLogSign(
         <Link to="/login">
@@ -60,6 +68,12 @@ const Header = () => {
       );
       setSignUpButton(
         <Link to="/signup">Signup</Link>
+      );
+      setNewPost(
+        <></>
+      );
+      setMyPosts(
+        <></>
       );
     }
   }, [loggedIn]);
@@ -73,8 +87,8 @@ const Header = () => {
     <>
       <header className="flex justify-around items-center border-b border-b-gray-400 min-h-[7vh]">
         <Link to="/">Home</Link>
-        <Link to="/new_post">New post</Link>
-        <Link to="/my_posts">My posts</Link>
+        {newPost}
+        {myPosts}
         {signUpButton}
         {loginSignOut}
       </header>
